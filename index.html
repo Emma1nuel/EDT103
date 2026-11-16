@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDT 103 - ASSIGNMENT</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 35px;
+        }
+
+        #prankButton {
+            padding: 18px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            background: #ff3131;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        #prankButton:hover {
+            background: #ff0000;
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 15px;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎓 WELCOME TO EDT 103 🎓</h1>
+
+    <p>Think you are ready? Click the button below to begin!</p>
+
+    <button id="prankButton" onclick="startPrank()">
+        CLICK TO START 
+    </button>
+
+    <div id="message"></div>
+
+    <!-- Background Audio -->
+    <audio id="prankAudio" loop>
+        <source src="WhatsApp Audio 2026-11-16 at 22.06.09.mpeg" type="audio/mpeg">
+    </audio>
+
+    <footer>
+        EDT 103 | Educational Technology Assignment
+    </footer>
+
+    <script>
+        let clicks = 0;
+
+        function startPrank() {
+
+            clicks++;
+
+            const button = document.getElementById("prankButton");
+            const message = document.getElementById("message");
+            const audio = document.getElementById("prankAudio");
+
+            // Start audio on the first click
+            if (clicks === 1) {
+                audio.play().catch(error => {
+                    console.log("Audio could not play:", error);
+                });
+            }
+
+            // Increase button size
+            let size = 20 + (clicks * 10);
+            button.style.fontSize = size + "px";
+            button.style.padding = (18 + clicks * 5) + "px " +
+                                   (35 + clicks * 8) + "px";
+
+            // Change button messages
+            if (clicks === 1) {
+                button.innerText = "HAHA! YOU CLICKED ME 😂";
+                message.innerText = "Wait... something is happening!";
+
+            } else if (clicks === 2) {
+                button.innerText = "KEEP CLICKING! 🤣";
+                message.innerText = "You can't stop now!";
+
+            } else if (clicks === 3) {
+                button.innerText = "ARE YOU SERIOUS? 😭";
+                message.innerText = "This is getting interesting...";
+
+            } else if (clicks === 4) {
+                button.innerText = "EDT 103 HAS TAKEN OVER! 💀";
+                message.innerText = "Your curiosity is your problem!";
+
+            } else if (clicks >= 5) {
+                button.innerText = "YOU HAVE BEEN PRANKED!!! 🤣🤣";
+                message.innerText = "CONGRATULATIONS! YOU FAILED THE CURIOSITY TEST!";
+            }
+        }
+    </script>
+
+</body>
+</html>
